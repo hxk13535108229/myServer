@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-10-10 18:24:54
  * @LastEditors: hxk
- * @LastEditTime: 2022-10-10 18:40:04
+ * @LastEditTime: 2022-10-10 18:46:00
  * @FilePath: \myServer\testDemo\xuebao_server\server.go
  */
 package main
@@ -46,7 +46,7 @@ func (this *PingRouter) PostHandle(request kiface.IRequest) {
 
 func main() {
 	//创建一个server句柄
-	s := knet.NewServer("xuebao")
+	s := knet.NewServer("xuebao server")
 
 	s.AddRouter(&PingRouter{})
 

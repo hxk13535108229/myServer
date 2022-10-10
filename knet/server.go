@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-10-10 18:27:26
  * @LastEditors: hxk
- * @LastEditTime: 2022-10-10 18:38:55
+ * @LastEditTime: 2022-10-10 18:47:31
  * @FilePath: \myServer\knet\server.go
  */
 package knet
@@ -56,14 +56,14 @@ func (s *Server) Start() {
 		}
 
 		//2 监听服务器地址
-		listenner, err:= net.ListenTCP(s.IPVersion, addr)
+		listenner, err := net.ListenTCP(s.IPVersion, addr)
 		if err != nil {
 			fmt.Println("listen", s.IPVersion, "err", err)
 			return
 		}
 
 		//已经监听成功
-		fmt.Println("start Zinx server  ", s.Name, " succ, now listenning...")
+		fmt.Println("start server  ", s.Name, " succ, now listenning...")
 
 		//TODO server.go 应该有一个自动生成ID的方法
 		var cid uint32
@@ -82,7 +82,7 @@ func (s *Server) Start() {
 
 			//3.3 处理该新连接请求的 业务 方法， 此时应该有 handler 和 conn是绑定的
 			dealConn := NewConnection(conn, cid, s.Router)
-			cid ++
+			cid++
 
 			//3.4 启动当前链接的处理业务
 			go dealConn.Start()
@@ -91,7 +91,7 @@ func (s *Server) Start() {
 }
 
 func (s *Server) Stop() {
-	fmt.Println("[STOP] Zinx server , name " , s.Name)
+	fmt.Println("[STOP] server , name ", s.Name)
 
 	//TODO  Server.Stop() 将其他需要清理的连接信息或者其他信息 也要一并停止或者清理
 }
@@ -103,13 +103,13 @@ func (s *Server) Serve() {
 
 	//阻塞,否则主Go退出， listenner的go将会退出
 	for {
-		time.Sleep(10*time.Second)
+		time.Sleep(10 * time.Second)
 	}
 }
 
 //路由功能：给当前服务注册一个路由业务方法，供客户端链接处理使用
-func (s *Server)AddRouter(router kiface.IRouter) {
+func (s *Server) AddRouter(router kiface.IRouter) {
 	s.Router = router
 
-	fmt.Println("Add Router succ! " )
+	fmt.Println("Add Router succ! ")
 }

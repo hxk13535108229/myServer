@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-10-10 18:24:49
  * @LastEditors: hxk
- * @LastEditTime: 2022-10-10 18:30:07
+ * @LastEditTime: 2022-10-10 18:41:41
  * @FilePath: \myServer\testDemo\xuebao_client\client.go
  */
 package main
@@ -25,7 +25,7 @@ func main() {
 	}
 
 	for {
-		_, err := conn.Write([]byte("hahaha"))
+		_, err := conn.Write([]byte("Zinx V0.3"))
 		if err != nil {
 			fmt.Println("write error err ", err)
 			return
@@ -38,7 +38,7 @@ func main() {
 			return
 		}
 
-		fmt.Printf(" server call back:%s,cnt = %d\n", buf, cnt)
+		fmt.Printf(" server call back :%s, cnt = %d\n", buf[:cnt], cnt)
 
 		time.Sleep(1 * time.Second)
 	}
